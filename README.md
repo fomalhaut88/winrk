@@ -35,6 +35,8 @@ Options:
 
 Download the installer from SourceForge: https://sourceforge.net/projects/winrk/files/latest/download
 
+After installation restart your computer.
+
 ## Example
 
 Command:
@@ -68,4 +70,5 @@ Result:
 ## Packing from source
 
 Step 1: `cargo build --release`
+
 Step 2: `iscc winrk-setup.iss`
