@@ -8,6 +8,11 @@ pub fn print_stat(config: &Config, stat: &Stat) {
     let mut latencies = stat.latencies.clone();
     latencies.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
+    if latencies.len() == 0 {
+        println!("Error: Empty result");
+        return;
+    }
+
     let total = latencies.len();
     let err_perc = 100.0 * stat.err_count as f64 / total as f64;
     let lat_sum = latencies.iter().map(|d| d.as_secs_f64()).sum::<f64>();

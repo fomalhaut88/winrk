@@ -18,7 +18,7 @@ pub struct Config {
 
 
 impl Config {
-    pub fn parse_args(args: &[String]) -> Self {
+    pub fn parse_args(args: &[String]) -> Result<Self, String> {
         let mut arg_name: Option<&str> = None;
 
         let mut url: Option<String> = None;
@@ -42,12 +42,8 @@ impl Config {
                     None => { 
                         url = Some(arg.clone()); 
                     },
-                    // Some("-q1") | Some("--help") => {
-                    //     println!("Yes");
-                    //     std::process::exit(0);
-                    // },
                     Some("-d") | Some("--duration") => {
-                        let val: f64 = arg.parse().expect("Duration must be float");
+                        let val: f64 = arg.parse().map_err(|_| "Duration must be float")?;
                         duration = Duration::from_secs_f64(val);
                     },
                     Some("-c") | Some("--connections") => {
@@ -80,8 +76,8 @@ impl Config {
             }
         }
 
-        Self {
-            url: url.expect("No URL provided"),
+        Ok(Self {
+            url: url.ok_or("No URL provided")?,
             duration,
             connections,
             threads,
@@ -89,7 +85,7 @@ impl Config {
             data,
             headers,
             timeout,
-        }
+        })
     }
 }
 

@@ -28,7 +28,6 @@ async fn perform_request(client: &Client, config: &Config) -> Result<Response, r
     let resp = builder.send().await?;
 
     // Return status
-    // Ok(resp.status().as_u16())
     Ok(resp)
 }
 
@@ -71,7 +70,8 @@ pub async fn load_test(config: &Config) -> Result<Stat, reqwest::Error> {
                             stat.err_count += 1;
                         }
 
-                        stat.transfers += resp.text().await.unwrap().len();
+                        stat.transfers += resp.text().await
+                            .unwrap_or("".to_owned()).len();
                     },
                     Err(_) => {
                         stat.err_count += 1;

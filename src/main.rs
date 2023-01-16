@@ -15,18 +15,33 @@ use crate::load::load_test;
 
 
 fn main() {
-    // Prepare config
+    // Get arguments
     let args: Vec<String> = env::args().collect();
-    let config = Config::parse_args(&args[1..]);
 
-    // Run
-    tokio::runtime::Builder::new_multi_thread()
-        .enable_all()
-        .worker_threads(config.threads)
-        .build()
-        .unwrap()
-        .block_on(async {
-            let stat = load_test(&config).await.unwrap();
-            print_stat(&config, &stat);
-        });
+    // Parse config
+    match Config::parse_args(&args[1..]) {
+        Ok(config) => {
+            // Run
+            tokio::runtime::Builder::new_multi_thread()
+                .enable_all()
+                .worker_threads(config.threads)
+                .build()
+                .unwrap()
+                .block_on(async {
+                    let stat_res = load_test(&config).await;
+
+                    match stat_res {
+                        Ok(stat) => { 
+                            print_stat(&config, &stat); 
+                        },
+                        Err(err) => {
+                            println!("Error: {:?}", err);
+                        },
+                    }            
+                });
+        },
+        Err(err) => {
+            println!("Error: {}", err);
+        },
+    }    
 }
