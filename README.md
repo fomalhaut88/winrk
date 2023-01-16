@@ -31,34 +31,38 @@ Options:
     url                - URL to request.
 ```
 
+## Download
+
+Download the installer from SourceForge: https://sourceforge.net/projects/winrk/files/latest/download
+
 ## Example
 
 Command:
 
 ```
-winrk http://localhost:8000/test -t 4 -d 5 -c 200
+winrk https://example.com -t 4 -d 5 -c 200
 ```
 
 Output:
 
 ```
 Input:
-    url: http://localhost:8000/test
+    url: https://example.com
     method: GET
     threads: 4
     duration: 5s
     connections: 200
 
 Result:
-    total: 6949 requests
+    total: 462 requests
     errors: 0 errors
     error percentage: 0.0%
-    latency min: 2.6628ms
-    latency median: 69.6987ms
-    latency average: 119.560015ms
-    latency max: 4.7167885s
-    transfers: 41694 bytes
-    rps: 1672.8 requests per sec
+    latency min: 168.2623ms
+    latency median: 188.50075ms
+    latency average: 211.496462ms
+    latency max: 742.1273ms
+    transfers: 580272 bytes
+    rps: 945.6 requests per sec
 ```
 
 ## Packing from source
