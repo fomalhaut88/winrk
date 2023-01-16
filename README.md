@@ -60,3 +60,8 @@ Result:
     transfers: 41694 bytes
     rps: 1672.8 requests per sec
 ```
+
+## Packing from source
+
+Step 1: `cargo build --release`
+Step 2: `iscc winrk-setup.iss`
