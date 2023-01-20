@@ -4,13 +4,14 @@
 > winrk --help
 winrk
 
-    A command line program for load test of an HTTP server.
+    A command line program for load testing of an HTTP server.
 
 Usage:
 
-    winrk [--help | -H] 
-          [--duration <duration> | -d <duration>] 
-          [--connections <connections> | -c <connections>] 
+    winrk [--help | -h]
+          [--version | -v]
+          [--duration <duration> | -d <duration>]
+          [--connections <connections> | -c <connections>]
           [--threads <threads> | -t <threads>]
           [--method <method> | -m <method>]
           [--header '<key>:<value>' | -H '<key>:<value>']
@@ -20,7 +21,8 @@ Usage:
 
 Options:
 
-    --help (-H)        - print this help.
+    --help (-h)        - print this help.
+    --version (-v)     - print the version.
     --duration (-d)    - duration of the test in seconds (default 10).
     --connections (-c) - number of parallel connections (default 100).
     --threads (-t)     - number of CPU workers (default 1).
