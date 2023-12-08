@@ -1,14 +1,17 @@
 use std::sync::Arc;
 use std::time::Instant;
 
-use reqwest::{Client, Response};
+use reqwest::{Client, RequestBuilder};
 use tokio::{task, time::sleep, sync::Mutex};
 
 use crate::config::Config;
 use crate::stat::Stat;
 
 
-async fn perform_request(client: &Client, config: &Config) -> Result<Response, reqwest::Error> {
+fn create_request_builder(config: &Config) -> RequestBuilder {
+    // Create a client
+    let client = Client::new();
+
     // Create request builder
     let mut builder = client
         .request(config.method.clone(), &config.url)
@@ -24,11 +27,7 @@ async fn perform_request(client: &Client, config: &Config) -> Result<Response, r
         builder = builder.timeout(duration);
     }
 
-    // Perform request
-    let resp = builder.send().await?;
-
-    // Return status
-    Ok(resp)
+    builder
 }
 
 
@@ -42,18 +41,20 @@ pub async fn load_test(config: &Config) -> Result<Stat, reqwest::Error> {
     // Create parallel tasks
     for _ in 0..config.connections {
         // Clone statistics
-        let config_clone = config.clone();
         let stat_clone = Arc::clone(&stat_arc);
+
+        // Create a request builder
+        let request_builder = create_request_builder(&config);
 
         // Spawn a new thread
         let handler = task::spawn(async move {
-            // Create a client
-            let client = Client::new();
-
             loop {
+                // Create request builder copy
+                let request_builder_copy = request_builder.try_clone().unwrap();
+
                 // Perform request
                 let start = Instant::now();
-                let resp_result = perform_request(&client, &config_clone).await;
+                let resp_result = request_builder_copy.send().await;
                 let latency = start.elapsed();
 
                 // Get stat
@@ -70,8 +71,9 @@ pub async fn load_test(config: &Config) -> Result<Stat, reqwest::Error> {
                             stat.err_count += 1;
                         }
 
-                        stat.transfers += resp.text().await
-                            .unwrap_or("".to_owned()).len();
+                        stat.transfers += resp.text().await.map(
+                            |body| body.len()
+                        ).unwrap_or(0);
                     },
                     Err(_) => {
                         stat.err_count += 1;
