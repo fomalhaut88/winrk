@@ -58,15 +58,15 @@ Input:
     connections: 200
 
 Result:
-    total: 462 requests
+    total: 3943 requests
     errors: 0 errors
     error percentage: 0.0%
-    latency min: 168.2623ms
-    latency median: 188.50075ms
-    latency average: 211.496462ms
-    latency max: 742.1273ms
-    transfers: 580272 bytes
-    rps: 945.6 requests per sec
+    latency min: 209.2183ms
+    latency median: 213.1443ms
+    latency average: 249.390382ms
+    latency max: 987.9829ms
+    transfers: 4952408 bytes
+    rps: 802.0 requests per sec
 ```
 
 ## Packing from source
