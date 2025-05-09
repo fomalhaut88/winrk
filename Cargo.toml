@@ -1,7 +1,13 @@
 [package]
 name = "winrk"
-version = "0.1.2"
-edition = "2021"
+version = "0.1.3"
+edition = "2024"
+authors = ["Alexander Fomalhaut <alexfomalhaut@gmail.com>"]
+description = "A fast HTTP benchmarking tool for Windows users, inspired by wrk"
+readme = "README.md"
+homepage = "https://github.com/fomalhaut88/winrk"
+repository = "https://github.com/fomalhaut88/winrk"
+keywords = ["benchmark", "http", "load-testing", "performance", "windows"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

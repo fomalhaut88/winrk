@@ -52,33 +52,33 @@ pub async fn load_test(config: &Config) -> Result<Stat, reqwest::Error> {
                 // Create request builder copy
                 let request_builder_copy = request_builder.try_clone().unwrap();
 
-                // Perform request
+                // Start timer
                 let start = Instant::now();
+
+                // Send request
                 let resp_result = request_builder_copy.send().await;
+
+                // Download the body
+                let (err, body_size) = if let Ok(resp) = resp_result {
+                    let err = resp.status().is_client_error() || 
+                              resp.status().is_server_error();
+                    let body_size = resp.text().await.map(|body| body.len())
+                                                     .unwrap_or(0);
+                    (err, body_size)
+                } else {
+                    (true, 0)
+                };
+
+                // Finish timer
                 let latency = start.elapsed();
 
                 // Get stat
                 let mut stat = stat_clone.lock().await;
 
-                // Add latency
+                // Modify stat
                 stat.latencies.push(latency);
-
-                // Add transfers and error count
-                match resp_result {
-                    Ok(resp) => {
-                        if resp.status().is_client_error() || 
-                           resp.status().is_server_error() {
-                            stat.err_count += 1;
-                        }
-
-                        stat.transfers += resp.text().await.map(
-                            |body| body.len()
-                        ).unwrap_or(0);
-                    },
-                    Err(_) => {
-                        stat.err_count += 1;
-                    },
-                }
+                stat.err_count += err as usize;
+                stat.transfers += body_size;
             }
         });
         handlers.push(handler);
