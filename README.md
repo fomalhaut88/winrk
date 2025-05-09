@@ -2,35 +2,23 @@
 
 ```
 > winrk --help
-winrk
+Winrk is an HTTP benchmarking tool for Windows users, inspired by wrk.
 
-    A command line program for load testing of an HTTP server.
+Usage: winrk [OPTIONS] <URL>
 
-Usage:
-
-    winrk [--help | -h]
-          [--version | -v]
-          [--duration <duration> | -d <duration>]
-          [--connections <connections> | -c <connections>]
-          [--threads <threads> | -t <threads>]
-          [--method <method> | -m <method>]
-          [--header '<key>:<value>' | -H '<key>:<value>']
-          [--data <data> | -D <data>]
-          [--timeout <timeout> | -T <timeout>]
-          <url>
+Arguments:
+  <URL>  URL to load
 
 Options:
-
-    --help (-h)        - print this help.
-    --version (-v)     - print the version.
-    --duration (-d)    - duration of the test in seconds (default 10).
-    --connections (-c) - number of parallel connections (default 100).
-    --threads (-t)     - number of CPU workers (default 1).
-    --method (-m)      - HTTP method (default GET).
-    --header (-H)      - HTTP header, can be multiple (default empty).
-    --data (-D)        - HTTP payload (default '').
-    --timeout (-T)     - connection timeout (default empty).
-    url                - URL to request.
+  -d, --duration <DURATION>        Load duration [default: 10]
+  -c, --connections <CONNECTIONS>  Number of simultaneous connections [default: 100]
+  -t, --threads <THREADS>          Number of CPU threads [default: 1]
+  -m, --method <METHOD>            HTTP method [default: GET]
+  -D, --data <DATA>                Request body [default: ]
+  -H, --header <HEADER>            HTTP header
+  -T, --timeout <TIMEOUT>          Request timeout
+  -h, --help                       Print help
+  -V, --version                    Print version
 ```
 
 ## Download
@@ -58,15 +46,15 @@ Input:
     connections: 200
 
 Result:
-    total: 3943 requests
+    total: 5733 requests
     errors: 0 errors
     error percentage: 0.0%
-    latency min: 209.2183ms
-    latency median: 213.1443ms
-    latency average: 249.390382ms
-    latency max: 987.9829ms
-    transfers: 4952408 bytes
-    rps: 802.0 requests per sec
+    latency min: 148.93645ms
+    latency median: 200.466559ms
+    latency average: 212.157226ms
+    latency max: 927.661398ms
+    transfers: 1.129 MB per sec
+    rps: 942.7 requests per sec
 ```
 
 ## Packing from source

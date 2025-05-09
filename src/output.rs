@@ -24,6 +24,8 @@ pub fn print_stat(config: &Config, stat: &Stat) {
         latencies[(latencies.len() - 1) / 2].as_secs_f64() + 
         latencies[latencies.len() / 2].as_secs_f64()
     ));
+    let transfers_avg = (stat.transfers * config.connections) as f64 
+                        / lat_sum / 1048576f64;
 
     println!("Input:");
     println!("    url: {}", config.url);
@@ -43,6 +45,6 @@ pub fn print_stat(config: &Config, stat: &Stat) {
     println!("    latency median: {:?}", lat_med);
     println!("    latency average: {:?}", lat_avg);
     println!("    latency max: {:?}", latencies[latencies.len() - 1]);
-    println!("    transfers: {} bytes", stat.transfers);
+    println!("    transfers: {:.3} MB per sec", transfers_avg);
     println!("    rps: {:.1} requests per sec", rps);
 }

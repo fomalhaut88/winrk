@@ -18,7 +18,7 @@ fn create_request_builder(config: &Config) -> RequestBuilder {
         .body(config.data.clone());
 
     // Add headers
-    for (key, value) in config.headers.iter() {
+    for (key, value) in config.header.iter() {
         builder = builder.header(key, value);
     }
 
