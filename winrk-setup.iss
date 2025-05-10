@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Winrk"
-#define MyAppVersion "0.1.3"
+#define MyAppVersion "0.1.4"
 #define MyAppPublisher "Alexander Fomalhaut, Inc."
 #define MyAppURL "http://alexfomalhaut.com/"
 #define MyAppExeName "winrk.exe"
