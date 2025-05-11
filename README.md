@@ -21,6 +21,8 @@ Options:
   -V, --version                    Print version
 ```
 
+Read more on [Medium - Winrk is a wrk alternative for Windows users](https://medium.com/@afomalhaut/winrk-a-wrk-alternative-for-windows-users-8c6aa6c6e23b).
+
 ## Download
 
 Download the installer from SourceForge: https://sourceforge.net/projects/winrk/files/latest/download
