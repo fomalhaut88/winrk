@@ -2,8 +2,8 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/fomalhaut88/winrk?style=social)](https://github.com/fomalhaut88/winrk/stargazers)
 ![Top Language](https://img.shields.io/github/languages/top/fomalhaut88/winrk)
-![Version](https://img.shields.io/badge/version-v0.1.4-orange)
-![License](https://img.shields.io/github/license/fomalhaut88/winrk)
+![Version](https://img.shields.io/badge/version-v0.1.4-green)
+![License](https://img.shields.io/badge/license-MIL-orange)
 
 ```
 > winrk --help
