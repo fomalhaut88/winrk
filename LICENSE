@@ -1,1 +1,1 @@
-MIT
+MIT License
