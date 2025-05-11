@@ -2,6 +2,7 @@
 name = "winrk"
 version = "0.1.4"
 edition = "2024"
+license = "MIT"
 authors = ["Alexander Fomalhaut <alexfomalhaut@gmail.com>"]
 description = "Winrk is an HTTP benchmarking tool for Windows users, inspired by wrk."
 readme = "README.md"
