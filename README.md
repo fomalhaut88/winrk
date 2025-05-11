@@ -1,5 +1,8 @@
 # winrk
 
+![Top Language](https://img.shields.io/github/languages/top/fomalhaut88/winrk)
+![Version](https://img.shields.io/badge/version-v0.1.4-orange)
+
 ```
 > winrk --help
 Winrk is an HTTP benchmarking tool for Windows users, inspired by wrk.
